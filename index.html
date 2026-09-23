@@ -1,58 +1,1024 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot Package</title>
+
+    <title>The Wasteland Spy — Deacon Bot Package</title>
+
+    <style>
+        /* =========================================================
+           COLOR PALETTE
+           ========================================================= */
+
+        :root {
+            --bg: #101412;
+            --bg-soft: #151b18;
+            --panel: #18201d;
+            --panel-hover: #1d2824;
+
+            --teal: #25cd9d;
+            --teal-muted: #77ac9e;
+
+            --gold: #deab2c;
+            --gold-light: #e3cd98;
+
+            --text: #ddd9ce;
+            --text-muted: #9da59f;
+
+            --red: #c85b52;
+
+            --border: rgba(119, 172, 158, 0.25);
+            --border-gold: rgba(222, 171, 44, 0.35);
+
+            --max-width: 1050px;
+        }
+
+
+        /* =========================================================
+           GENERAL
+           ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(
+                    circle at top center,
+                    rgba(37, 205, 157, 0.055),
+                    transparent 45%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--gold-light);
+        }
+
+
+        /* =========================================================
+           MAIN CONTAINER
+           ========================================================= */
+
+        .page {
+            width: min(100% - 32px, var(--max-width));
+            margin: 0 auto;
+            padding: 55px 0 80px;
+        }
+
+
+        /* =========================================================
+           HEADER
+           ========================================================= */
+
+        header {
+            text-align: center;
+            padding: 25px 20px 45px;
+        }
+
+        .eyebrow {
+            color: var(--teal);
+            font-family: Arial, sans-serif;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: var(--gold-light);
+
+            font-size: clamp(2.5rem, 7vw, 4.8rem);
+            line-height: 1.05;
+            font-weight: normal;
+
+            text-shadow:
+                0 0 25px rgba(222, 171, 44, 0.08);
+        }
+
+        .subtitle {
+            margin: 18px auto 0;
+
+            color: var(--teal-muted);
+
+            font-family: Georgia, serif;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-style: italic;
+
+            max-width: 700px;
+        }
+
+
+        /* =========================================================
+           DECORATIVE DIVIDER
+           ========================================================= */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            width: min(100%, 700px);
+            margin: 35px auto;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    var(--border-gold)
+                );
+        }
+
+        .divider::after {
+            background:
+                linear-gradient(
+                    to left,
+                    transparent,
+                    var(--border-gold)
+                );
+        }
+
+        .divider span {
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+        }
+
+
+        /* =========================================================
+           PURCHASE BUTTON
+           ========================================================= */
+
+        .purchase-area {
+            text-align: center;
+            margin: 35px 0 50px;
+        }
+
+        .purchase-button {
+            display: inline-block;
+
+            padding: 13px 30px;
+
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(222, 171, 44, 0.16),
+                    rgba(222, 171, 44, 0.05)
+                );
+
+            color: var(--gold-light);
+
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .purchase-button:hover {
+            background: rgba(222, 171, 44, 0.22);
+            border-color: var(--gold-light);
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+           INTRO / NOTICE
+           ========================================================= */
+
+        .intro {
+            margin-bottom: 35px;
+
+            padding: 25px 30px;
+
+            border-left: 2px solid var(--teal);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(37, 205, 157, 0.07),
+                    transparent
+                );
+
+            color: var(--text-muted);
+        }
+
+        .intro strong {
+            color: var(--teal);
+        }
+
+
+        /* =========================================================
+           DROPDOWN SECTIONS
+           ========================================================= */
+
+        .sections {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        details {
+            border: 1px solid var(--border);
+            border-radius: 5px;
+
+            background: var(--panel);
+
+            overflow: hidden;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        details:hover {
+            border-color: rgba(119, 172, 158, 0.45);
+        }
+
+        details[open] {
+            border-color: var(--border-gold);
+            background: var(--panel);
+        }
+
+
+        /* =========================================================
+           DROPDOWN HEADER
+           ========================================================= */
+
+        summary {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            min-height: 65px;
+
+            padding: 17px 22px 17px 25px;
+
+            cursor: pointer;
+
+            list-style: none;
+
+            color: var(--gold-light);
+
+            font-size: 1.1rem;
+            font-weight: normal;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+
+            margin-left: auto;
+
+            color: var(--teal);
+
+            font-family: Arial, sans-serif;
+            font-size: 1.4rem;
+            font-weight: normal;
+
+            transition: transform 0.2s ease;
+        }
+
+        details[open] > summary::after {
+            content: "−";
+            color: var(--gold);
+        }
+
+        summary:hover {
+            background: var(--panel-hover);
+        }
+
+
+        /* =========================================================
+           SECTION CONTENT
+           ========================================================= */
+
+        .section-content {
+            padding: 5px 28px 30px;
+
+            color: var(--text);
+        }
+
+        .section-content p {
+            margin: 12px 0;
+        }
+
+        .section-content h3 {
+            margin: 28px 0 10px;
+
+            color: var(--teal);
+
+            font-size: 1rem;
+            font-weight: normal;
+            letter-spacing: 0.04em;
+        }
+
+        .section-content h3:first-child {
+            margin-top: 10px;
+        }
+
+
+        /* =========================================================
+           NESTED DROPDOWNS
+           ========================================================= */
+
+        .nested {
+            margin: 14px 0;
+
+            border-color: rgba(119, 172, 158, 0.18);
+
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        .nested summary {
+            min-height: 52px;
+
+            padding: 13px 18px;
+
+            color: var(--teal-muted);
+
+            font-size: 0.98rem;
+        }
+
+        .nested .section-content {
+            padding: 3px 20px 20px;
+        }
+
+
+        /* =========================================================
+           FEATURE GRID
+           ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin: 20px 0;
+        }
+
+        .feature {
+            padding: 18px;
+
+            border: 1px solid rgba(119, 172, 158, 0.15);
+            border-radius: 4px;
+
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-title {
+            color: var(--gold-light);
+
+            font-family: Arial, sans-serif;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .feature p {
+            margin: 7px 0 0;
+
+            color: var(--text-muted);
+
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           WARNING
+           ========================================================= */
+
+        .warning {
+            margin: 15px 0;
+
+            padding: 16px 20px;
+
+            border-left: 2px solid var(--red);
+
+            background: rgba(200, 91, 82, 0.06);
+
+            color: #cfa6a2;
+
+            font-size: 0.92rem;
+        }
+
+        .warning strong {
+            color: var(--red);
+        }
+
+
+        /* =========================================================
+           LISTS
+           ========================================================= */
+
+        ul {
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        li::marker {
+            color: var(--teal);
+        }
+
+
+        /* =========================================================
+           BOT LINKS
+           ========================================================= */
+
+        .bot-links {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+        .bot-link {
+            display: block;
+
+            padding: 11px 14px;
+
+            border: 1px solid rgba(119, 172, 158, 0.18);
+            border-radius: 3px;
+
+            background: rgba(0, 0, 0, 0.1);
+
+            color: var(--teal-muted);
+
+            font-size: 0.9rem;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .bot-link:hover {
+            border-color: var(--teal);
+            background: rgba(37, 205, 157, 0.05);
+        }
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            margin-top: 60px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+
+            text-align: center;
+
+            color: var(--text-muted);
+
+            font-family: Arial, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+        }
+
+        footer .gold {
+            color: var(--gold);
+        }
+
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+                width: min(100% - 20px, var(--max-width));
+                padding-top: 30px;
+            }
+
+            header {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .intro {
+                padding: 20px;
+            }
+
+            summary {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .section-content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bot-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
+<div class="page">
+
+
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
+
     <header>
-        <h1>Bot Package</h1>
-        <p>Information, previews, and resources.</p>
+
+        <div class="eyebrow">
+            A GoldAnnie Creation
+        </div>
+
+        <h1>
+            The Wasteland Spy
+        </h1>
+
+        <div class="subtitle">
+            An improved and extended Deacon bot package
+        </div>
+
+        <div class="divider">
+            <span>• • •</span>
+        </div>
+
     </header>
 
-    <main>
 
-        <section>
-            <h2>About</h2>
-            <p>
-                Information about the package will go here.
-            </p>
-        </section>
+    <!-- =========================================================
+         PURCHASE BUTTON
+         ========================================================= -->
 
-        <section>
-            <h2>What's Included</h2>
-            <p>
-                Details about the contents of the package will go here.
-            </p>
-        </section>
+    <div class="purchase-area">
 
-        <section>
-            <h2>Information</h2>
-            <p>
-                Additional information, requirements, and instructions will go here.
-            </p>
-        </section>
+        <a
+            class="purchase-button"
+            href="#"
+            target="_blank"
+        >
+            Get it on Ko-fi
+        </a>
 
-        <section>
-            <h2>Purchase</h2>
-            <p>
-                The package is available through Ko-fi.
-            </p>
+    </div>
 
-            <a href="#">
-                Buy the Package
-            </a>
-        </section>
 
-    </main>
+    <!-- =========================================================
+         INTRO
+         ========================================================= -->
+
+    <div class="intro">
+
+        <strong>About this page</strong>
+
+        <p>
+            This website contains information, previews and documentation
+            for the package. The actual package files are provided through
+            Ko-fi after purchase.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         DROPDOWN SECTIONS
+         ========================================================= -->
+
+    <div class="sections">
+
+
+        <!-- ABOUT -->
+
+        <details open>
+
+            <summary>
+                About the Package
+            </summary>
+
+            <div class="section-content">
+
+                <p>
+                    Placeholder text for the package description.
+                    We'll replace this with the polished version of
+                    your actual product description.
+                </p>
+
+                <div class="feature-grid">
+
+                    <div class="feature">
+                        <div class="feature-title">
+                            Multiple Bots
+                        </div>
+
+                        <p>
+                            Different configurations designed for
+                            different roleplay styles.
+                        </p>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-title">
+                            Cinematic Intros
+                        </div>
+
+                        <p>
+                            A selection of scenario-based introductions.
+                        </p>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-title">
+                            Lorebook Ready
+                        </div>
+
+                        <p>
+                            Designed to work alongside your Fallout
+                            lorebook setup.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+        <!-- CONTENTS -->
+
+        <details>
+
+            <summary>
+                Package Contents
+            </summary>
+
+            <div class="section-content">
+
+
+                <!-- CORE -->
+
+                <details class="nested">
+
+                    <summary>
+                        Core
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            The main Deacon configurations, designed
+                            for general-purpose roleplay.
+                        </p>
+
+                        <ul>
+                            <li>Compact version</li>
+                            <li>Standard version</li>
+                            <li>Extended version</li>
+                        </ul>
+
+                    </div>
+
+                </details>
+
+
+                <!-- STORY -->
+
+                <details class="nested">
+
+                    <summary>
+                        Story
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Character-focused scenarios with their own
+                            narrative hooks and starting situations.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <!-- MULTICHARACTER -->
+
+                <details class="nested">
+
+                    <summary>
+                        Multicharacter
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Scenarios featuring Deacon alongside
+                            another Fallout character.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <!-- MODULES -->
+
+                <details class="nested">
+
+                    <summary>
+                        Mix &amp; Match Modules
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Interchangeable personality, scenario and
+                            example-dialogue modules.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+            </div>
+
+        </details>
+
+
+        <!-- BOT SAMPLES -->
+
+        <details>
+
+            <summary>
+                Public Bot Samples
+            </summary>
+
+            <div class="section-content">
+
+                <p>
+                    Examples of my public bots and writing style.
+                </p>
+
+                <div class="bot-links">
+
+                    <a class="bot-link" href="#" target="_blank">
+                        Deacon — Main Bot
+                    </a>
+
+                    <a class="bot-link" href="#" target="_blank">
+                        Deacon — Undercover Scenario
+                    </a>
+
+                    <a class="bot-link" href="#" target="_blank">
+                        Paladin Danse
+                    </a>
+
+                    <a class="bot-link" href="#" target="_blank">
+                        Fallout RPG
+                    </a>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+        <!-- TECHNICAL -->
+
+        <details>
+
+            <summary>
+                Technical Information
+            </summary>
+
+            <div class="section-content">
+
+                <h3>AI Compatibility</h3>
+
+                <p>
+                    Placeholder for model compatibility,
+                    token counts and configuration information.
+                </p>
+
+                <h3>Bot Structure</h3>
+
+                <p>
+                    Placeholder for information about the bot
+                    architecture and interchangeable components.
+                </p>
+
+                <h3>Lorebooks</h3>
+
+                <p>
+                    Placeholder for lorebook compatibility and
+                    recommended settings.
+                </p>
+
+            </div>
+
+        </details>
+
+
+        <!-- FAQ -->
+
+        <details>
+
+            <summary>
+                FAQ
+            </summary>
+
+            <div class="section-content">
+
+                <details class="nested">
+
+                    <summary>
+                        What do I receive?
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Placeholder answer.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="nested">
+
+                    <summary>
+                        Can I use the package with JLLM?
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Placeholder answer.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="nested">
+
+                    <summary>
+                        Can I modify the bots?
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Placeholder answer.
+                        </p>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </details>
+
+
+        <!-- TERMS -->
+
+        <details>
+
+            <summary>
+                Usage Terms
+            </summary>
+
+            <div class="section-content">
+
+                <div class="warning">
+
+                    <strong>Please read before purchasing.</strong>
+
+                    <p>
+                        Placeholder for your actual usage terms,
+                        redistribution restrictions and mature-content
+                        information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+    </div>
+
+
+    <!-- =========================================================
+         BOTTOM PURCHASE
+         ========================================================= -->
+
+    <div class="divider">
+        <span>• • •</span>
+    </div>
+
+    <div class="purchase-area">
+
+        <a
+            class="purchase-button"
+            href="#"
+            target="_blank"
+        >
+            Get the Package
+        </a>
+
+    </div>
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
 
     <footer>
-        <p>© 2026 Aureum Creative</p>
+
+        <span class="gold">Aureum Creative</span>
+        ·
+        GoldAnnie
+        ·
+        © 2026
+
     </footer>
+
+
+</div>
 
 </body>
 </html>
