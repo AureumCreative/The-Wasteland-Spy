@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The Wasteland Spy — Deacon Bot Package</title>
+    <title>The Wasteland Spy — GoldAnnie</title>
 
     <style>
+
         /* =========================================================
-           COLOR PALETTE
+           GOLDANNIE / WASTELAND SPY
+           VISUAL FOUNDATION
            ========================================================= */
 
         :root {
-            --bg: #101412;
-            --bg-soft: #151b18;
-            --panel: #18201d;
-            --panel-hover: #1d2824;
+            --black: #0d1110;
+            --dark: #121816;
+            --panel: #171e1b;
+            --panel-light: #1c2521;
 
             --teal: #25cd9d;
             --teal-muted: #77ac9e;
@@ -23,20 +25,20 @@
             --gold: #deab2c;
             --gold-light: #e3cd98;
 
-            --text: #ddd9ce;
-            --text-muted: #9da59f;
+            --cream: #e8dfc9;
+            --muted: #9da59f;
 
             --red: #c85b52;
 
-            --border: rgba(119, 172, 158, 0.25);
-            --border-gold: rgba(222, 171, 44, 0.35);
+            --border: rgba(119, 172, 158, 0.22);
+            --gold-border: rgba(222, 171, 44, 0.35);
 
-            --max-width: 1050px;
+            --page-width: 1050px;
         }
 
 
         /* =========================================================
-           GENERAL
+           RESET
            ========================================================= */
 
         * {
@@ -49,15 +51,16 @@
 
         body {
             margin: 0;
+
             background:
                 radial-gradient(
-                    circle at top center,
-                    rgba(37, 205, 157, 0.055),
-                    transparent 45%
+                    circle at 50% -10%,
+                    rgba(37, 205, 157, 0.08),
+                    transparent 40%
                 ),
-                var(--bg);
+                var(--black);
 
-            color: var(--text);
+            color: var(--cream);
 
             font-family:
                 Georgia,
@@ -67,69 +70,152 @@
             line-height: 1.7;
         }
 
-        a {
-            color: var(--teal);
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: var(--gold-light);
-        }
-
 
         /* =========================================================
-           MAIN CONTAINER
+           PAGE
            ========================================================= */
 
         .page {
-            width: min(100% - 32px, var(--max-width));
-            margin: 0 auto;
-            padding: 55px 0 80px;
+            width: min(100% - 30px, var(--page-width));
+            margin: auto;
+            padding-bottom: 80px;
         }
 
 
         /* =========================================================
-           HEADER
+           HERO
            ========================================================= */
 
-        header {
-            text-align: center;
-            padding: 25px 20px 45px;
+        .hero {
+            position: relative;
+
+            min-height: 610px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            overflow: hidden;
+
+            margin-bottom: 45px;
         }
 
-        .eyebrow {
+
+        /* Deacon artwork */
+
+        .hero-image {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center center;
+
+            z-index: 0;
+        }
+
+
+        /* Dark cinematic overlays */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(13, 17, 16, 0.08) 0%,
+                    rgba(13, 17, 16, 0.05) 38%,
+                    rgba(13, 17, 16, 0.70) 72%,
+                    var(--black) 100%
+                );
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(13, 17, 16, 0.30),
+                    transparent 25%,
+                    transparent 75%,
+                    rgba(13, 17, 16, 0.30)
+                );
+        }
+
+
+        /* =========================================================
+           HERO TEXT
+           ========================================================= */
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            padding: 60px 25px 30px;
+
+            text-align: center;
+        }
+
+        .creator-label {
+            margin-bottom: 12px;
+
             color: var(--teal);
+
             font-family: Arial, sans-serif;
             font-size: 0.72rem;
             font-weight: bold;
-            letter-spacing: 0.28em;
+
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            margin-bottom: 18px;
         }
 
-        h1 {
+        .hero-title {
             margin: 0;
 
             color: var(--gold-light);
 
-            font-size: clamp(2.5rem, 7vw, 4.8rem);
-            line-height: 1.05;
+            font-size: clamp(2.6rem, 7vw, 5rem);
             font-weight: normal;
 
+            line-height: 1.05;
+
             text-shadow:
-                0 0 25px rgba(222, 171, 44, 0.08);
+                0 2px 18px rgba(0, 0, 0, 0.75),
+                0 0 30px rgba(222, 171, 44, 0.10);
         }
 
-        .subtitle {
-            margin: 18px auto 0;
-
-            color: var(--teal-muted);
-
-            font-family: Georgia, serif;
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            font-style: italic;
+        .hero-subtitle {
+            margin: 15px auto 0;
 
             max-width: 700px;
+
+            color: #d3c8ad;
+
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+
+            font-style: italic;
+
+            text-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.9);
         }
 
 
@@ -139,24 +225,29 @@
 
         .divider {
             display: flex;
-            align-items: center;
-            gap: 18px;
 
-            width: min(100%, 700px);
-            margin: 35px auto;
+            align-items: center;
+
+            gap: 16px;
+
+            width: min(100%, 650px);
+
+            margin: 28px auto;
         }
 
         .divider::before,
         .divider::after {
             content: "";
+
             height: 1px;
+
             flex: 1;
 
             background:
                 linear-gradient(
                     to right,
                     transparent,
-                    var(--border-gold)
+                    var(--gold-border)
                 );
         }
 
@@ -165,14 +256,16 @@
                 linear-gradient(
                     to left,
                     transparent,
-                    var(--border-gold)
+                    var(--gold-border)
                 );
         }
 
         .divider span {
             color: var(--gold);
-            font-size: 0.8rem;
-            letter-spacing: 0.25em;
+
+            font-size: 0.75rem;
+
+            letter-spacing: 0.3em;
         }
 
 
@@ -182,31 +275,36 @@
 
         .purchase-area {
             text-align: center;
-            margin: 35px 0 50px;
+
+            margin: 0 0 50px;
         }
 
         .purchase-button {
             display: inline-block;
 
-            padding: 13px 30px;
+            padding: 13px 32px;
 
             border: 1px solid var(--gold);
-            border-radius: 4px;
+
+            border-radius: 3px;
 
             background:
                 linear-gradient(
                     135deg,
-                    rgba(222, 171, 44, 0.16),
+                    rgba(222, 171, 44, 0.18),
                     rgba(222, 171, 44, 0.05)
                 );
 
             color: var(--gold-light);
 
             font-family: Arial, sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.76rem;
             font-weight: bold;
+
             letter-spacing: 0.16em;
             text-transform: uppercase;
+
+            text-decoration: none;
 
             transition:
                 background 0.2s ease,
@@ -215,8 +313,10 @@
         }
 
         .purchase-button:hover {
-            background: rgba(222, 171, 44, 0.22);
+            background: rgba(222, 171, 44, 0.24);
+
             border-color: var(--gold-light);
+
             color: white;
 
             transform: translateY(-2px);
@@ -224,13 +324,15 @@
 
 
         /* =========================================================
-           INTRO / NOTICE
+           INTRO
            ========================================================= */
 
         .intro {
-            margin-bottom: 35px;
+            max-width: 850px;
 
-            padding: 25px 30px;
+            margin: 0 auto 40px;
+
+            padding: 22px 28px;
 
             border-left: 2px solid var(--teal);
 
@@ -241,7 +343,7 @@
                     transparent
                 );
 
-            color: var(--text-muted);
+            color: var(--muted);
         }
 
         .intro strong {
@@ -250,51 +352,57 @@
 
 
         /* =========================================================
-           DROPDOWN SECTIONS
+           DROPDOWN CONTAINER
            ========================================================= */
 
         .sections {
             display: flex;
+
             flex-direction: column;
-            gap: 12px;
-        }
 
-        details {
-            border: 1px solid var(--border);
-            border-radius: 5px;
-
-            background: var(--panel);
-
-            overflow: hidden;
-
-            transition:
-                border-color 0.2s ease,
-                background 0.2s ease;
-        }
-
-        details:hover {
-            border-color: rgba(119, 172, 158, 0.45);
-        }
-
-        details[open] {
-            border-color: var(--border-gold);
-            background: var(--panel);
+            gap: 10px;
         }
 
 
         /* =========================================================
-           DROPDOWN HEADER
+           DROPDOWNS
            ========================================================= */
 
-        summary {
-            position: relative;
+        details {
+            border-top: 1px solid var(--border);
 
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(37, 205, 157, 0.025),
+                    transparent
+                );
+        }
+
+        details:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        details[open] {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(222, 171, 44, 0.025),
+                    transparent
+                );
+        }
+
+
+        /* Dropdown title */
+
+        summary {
             display: flex;
+
             align-items: center;
 
-            min-height: 65px;
+            min-height: 66px;
 
-            padding: 17px 22px 17px 25px;
+            padding: 17px 10px;
 
             cursor: pointer;
 
@@ -302,8 +410,9 @@
 
             color: var(--gold-light);
 
-            font-size: 1.1rem;
-            font-weight: normal;
+            font-size: 1.08rem;
+
+            letter-spacing: 0.04em;
         }
 
         summary::-webkit-details-marker {
@@ -315,51 +424,53 @@
 
             margin-left: auto;
 
+            padding-left: 20px;
+
             color: var(--teal);
 
             font-family: Arial, sans-serif;
-            font-size: 1.4rem;
-            font-weight: normal;
 
-            transition: transform 0.2s ease;
+            font-size: 1.35rem;
+
+            transition:
+                transform 0.2s ease;
         }
 
         details[open] > summary::after {
             content: "−";
+
             color: var(--gold);
         }
 
         summary:hover {
-            background: var(--panel-hover);
+            color: white;
         }
 
 
         /* =========================================================
-           SECTION CONTENT
+           CONTENT
            ========================================================= */
 
         .section-content {
-            padding: 5px 28px 30px;
+            padding: 5px 20px 30px;
 
-            color: var(--text);
+            color: var(--cream);
         }
 
         .section-content p {
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
         .section-content h3 {
-            margin: 28px 0 10px;
+            margin: 25px 0 8px;
 
             color: var(--teal);
 
-            font-size: 1rem;
-            font-weight: normal;
-            letter-spacing: 0.04em;
-        }
+            font-size: 0.95rem;
 
-        .section-content h3:first-child {
-            margin-top: 10px;
+            font-weight: normal;
+
+            letter-spacing: 0.05em;
         }
 
 
@@ -368,30 +479,34 @@
            ========================================================= */
 
         .nested {
-            margin: 14px 0;
+            margin: 8px 0;
 
-            border-color: rgba(119, 172, 158, 0.18);
+            border: 1px solid rgba(119, 172, 158, 0.13);
 
             background: rgba(0, 0, 0, 0.12);
         }
 
-        .nested summary {
-            min-height: 52px;
+        .nested:last-child {
+            border-bottom: 1px solid rgba(119, 172, 158, 0.13);
+        }
 
-            padding: 13px 18px;
+        .nested summary {
+            min-height: 50px;
+
+            padding: 12px 15px;
 
             color: var(--teal-muted);
 
-            font-size: 0.98rem;
+            font-size: 0.95rem;
         }
 
         .nested .section-content {
-            padding: 3px 20px 20px;
+            padding: 3px 18px 20px;
         }
 
 
         /* =========================================================
-           FEATURE GRID
+           FEATURE CARDS
            ========================================================= */
 
         .feature-grid {
@@ -402,34 +517,38 @@
 
             gap: 12px;
 
-            margin: 20px 0;
+            margin: 22px 0;
         }
 
         .feature {
             padding: 18px;
 
             border: 1px solid rgba(119, 172, 158, 0.15);
-            border-radius: 4px;
 
-            background: rgba(0, 0, 0, 0.12);
+            background: rgba(0, 0, 0, 0.10);
         }
 
         .feature-title {
             color: var(--gold-light);
 
             font-family: Arial, sans-serif;
-            font-size: 0.75rem;
+
+            font-size: 0.7rem;
+
             font-weight: bold;
-            letter-spacing: 0.12em;
+
+            letter-spacing: 0.13em;
+
             text-transform: uppercase;
         }
 
         .feature p {
-            margin: 7px 0 0;
+            margin-top: 7px;
 
-            color: var(--text-muted);
+            color: var(--muted);
 
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+
             line-height: 1.5;
         }
 
@@ -439,17 +558,15 @@
            ========================================================= */
 
         .warning {
-            margin: 15px 0;
-
             padding: 16px 20px;
 
             border-left: 2px solid var(--red);
 
             background: rgba(200, 91, 82, 0.06);
 
-            color: #cfa6a2;
+            color: #c9aaa6;
 
-            font-size: 0.92rem;
+            font-size: 0.9rem;
         }
 
         .warning strong {
@@ -458,59 +575,18 @@
 
 
         /* =========================================================
-           LISTS
+           LINKS
            ========================================================= */
 
-        ul {
-            padding-left: 22px;
-        }
-
-        li {
-            margin: 5px 0;
-        }
-
-        li::marker {
+        a {
             color: var(--teal);
-        }
-
-
-        /* =========================================================
-           BOT LINKS
-           ========================================================= */
-
-        .bot-links {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 8px;
-
-            margin-top: 18px;
-        }
-
-        .bot-link {
-            display: block;
-
-            padding: 11px 14px;
-
-            border: 1px solid rgba(119, 172, 158, 0.18);
-            border-radius: 3px;
-
-            background: rgba(0, 0, 0, 0.1);
-
-            color: var(--teal-muted);
-
-            font-size: 0.9rem;
 
             transition:
-                border-color 0.2s ease,
-                background 0.2s ease;
+                color 0.2s ease;
         }
 
-        .bot-link:hover {
-            border-color: var(--teal);
-            background: rgba(37, 205, 157, 0.05);
+        a:hover {
+            color: var(--gold-light);
         }
 
 
@@ -519,7 +595,7 @@
            ========================================================= */
 
         footer {
-            margin-top: 60px;
+            margin-top: 65px;
 
             padding-top: 25px;
 
@@ -527,11 +603,13 @@
 
             text-align: center;
 
-            color: var(--text-muted);
+            color: var(--muted);
 
             font-family: Arial, sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.06em;
+
+            font-size: 0.7rem;
+
+            letter-spacing: 0.07em;
         }
 
         footer .gold {
@@ -546,35 +624,34 @@
         @media (max-width: 700px) {
 
             .page {
-                width: min(100% - 20px, var(--max-width));
-                padding-top: 30px;
+                width: min(100% - 18px, var(--page-width));
             }
 
-            header {
-                padding-left: 5px;
-                padding-right: 5px;
+            .hero {
+                min-height: 520px;
             }
 
-            .intro {
-                padding: 20px;
+            .hero-image {
+                object-position: center center;
             }
 
-            summary {
-                padding-left: 18px;
-                padding-right: 18px;
-            }
-
-            .section-content {
-                padding-left: 20px;
-                padding-right: 20px;
+            .hero-content {
+                padding-left: 12px;
+                padding-right: 12px;
             }
 
             .feature-grid {
                 grid-template-columns: 1fr;
             }
 
-            .bot-links {
-                grid-template-columns: 1fr;
+            .section-content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            summary {
+                padding-left: 5px;
+                padding-right: 5px;
             }
         }
 
@@ -588,45 +665,49 @@
 
 
     <!-- =========================================================
-         HEADER
+         HERO
          ========================================================= -->
 
-    <header>
+    <section class="hero">
 
-        <div class="eyebrow">
-            A GoldAnnie Creation
-        </div>
-
-        <h1>
-            The Wasteland Spy
-        </h1>
-
-        <div class="subtitle">
-            An improved and extended Deacon bot package
-        </div>
-
-        <div class="divider">
-            <span>• • •</span>
-        </div>
-
-    </header>
-
-
-    <!-- =========================================================
-         PURCHASE BUTTON
-         ========================================================= -->
-
-    <div class="purchase-area">
-
-        <a
-            class="purchase-button"
-            href="#"
-            target="_blank"
+        <img
+            class="hero-image"
+            src="images/deacon-hero.png"
+            alt="Deacon"
         >
-            Get it on Ko-fi
-        </a>
 
-    </div>
+        <div class="hero-content">
+
+            <div class="creator-label">
+                A GoldAnnie Creation
+            </div>
+
+            <h1 class="hero-title">
+                The Wasteland Spy
+            </h1>
+
+            <div class="hero-subtitle">
+                An improved and extended Deacon bot package
+            </div>
+
+            <div class="divider">
+                <span>• • •</span>
+            </div>
+
+            <div class="purchase-area">
+
+                <a
+                    class="purchase-button"
+                    href="#"
+                >
+                    Get the Package
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
     <!-- =========================================================
@@ -635,12 +716,12 @@
 
     <div class="intro">
 
-        <strong>About this page</strong>
+        <strong>Welcome.</strong>
 
         <p>
-            This website contains information, previews and documentation
-            for the package. The actual package files are provided through
-            Ko-fi after purchase.
+            This page contains information, previews and documentation
+            for The Wasteland Spy. The actual package files will be
+            provided separately.
         </p>
 
     </div>
@@ -650,7 +731,7 @@
          DROPDOWN SECTIONS
          ========================================================= -->
 
-    <div class="sections">
+    <main class="sections">
 
 
         <!-- ABOUT -->
@@ -664,43 +745,52 @@
             <div class="section-content">
 
                 <p>
-                    Placeholder text for the package description.
-                    We'll replace this with the polished version of
-                    your actual product description.
+                    This is where we'll introduce the package,
+                    explain what makes it different, and give visitors
+                    a quick overview of what they're getting.
                 </p>
 
                 <div class="feature-grid">
 
                     <div class="feature">
+
                         <div class="feature-title">
                             Multiple Bots
                         </div>
 
                         <p>
-                            Different configurations designed for
-                            different roleplay styles.
+                            Different configurations for different
+                            roleplay needs.
                         </p>
+
                     </div>
 
+
                     <div class="feature">
+
                         <div class="feature-title">
                             Cinematic Intros
                         </div>
 
                         <p>
-                            A selection of scenario-based introductions.
+                            Scenario-focused openings designed to
+                            create immediate context.
                         </p>
+
                     </div>
 
+
                     <div class="feature">
+
                         <div class="feature-title">
                             Lorebook Ready
                         </div>
 
                         <p>
-                            Designed to work alongside your Fallout
-                            lorebook setup.
+                            Designed to work alongside Fallout
+                            lorebook content.
                         </p>
+
                     </div>
 
                 </div>
@@ -710,7 +800,7 @@
         </details>
 
 
-        <!-- CONTENTS -->
+        <!-- PACKAGE CONTENTS -->
 
         <details>
 
@@ -721,8 +811,6 @@
             <div class="section-content">
 
 
-                <!-- CORE -->
-
                 <details class="nested">
 
                     <summary>
@@ -732,22 +820,13 @@
                     <div class="section-content">
 
                         <p>
-                            The main Deacon configurations, designed
-                            for general-purpose roleplay.
+                            The main Deacon configurations.
                         </p>
-
-                        <ul>
-                            <li>Compact version</li>
-                            <li>Standard version</li>
-                            <li>Extended version</li>
-                        </ul>
 
                     </div>
 
                 </details>
 
-
-                <!-- STORY -->
 
                 <details class="nested">
 
@@ -758,16 +837,13 @@
                     <div class="section-content">
 
                         <p>
-                            Character-focused scenarios with their own
-                            narrative hooks and starting situations.
+                            Character-focused scenarios.
                         </p>
 
                     </div>
 
                 </details>
 
-
-                <!-- MULTICHARACTER -->
 
                 <details class="nested">
 
@@ -778,16 +854,13 @@
                     <div class="section-content">
 
                         <p>
-                            Scenarios featuring Deacon alongside
-                            another Fallout character.
+                            Deacon alongside other Fallout characters.
                         </p>
 
                     </div>
 
                 </details>
 
-
-                <!-- MODULES -->
 
                 <details class="nested">
 
@@ -798,21 +871,19 @@
                     <div class="section-content">
 
                         <p>
-                            Interchangeable personality, scenario and
-                            example-dialogue modules.
+                            Interchangeable bot components.
                         </p>
 
                     </div>
 
                 </details>
 
-
             </div>
 
         </details>
 
 
-        <!-- BOT SAMPLES -->
+        <!-- SAMPLES -->
 
         <details>
 
@@ -823,28 +894,8 @@
             <div class="section-content">
 
                 <p>
-                    Examples of my public bots and writing style.
+                    Examples of public bots and writing samples.
                 </p>
-
-                <div class="bot-links">
-
-                    <a class="bot-link" href="#" target="_blank">
-                        Deacon — Main Bot
-                    </a>
-
-                    <a class="bot-link" href="#" target="_blank">
-                        Deacon — Undercover Scenario
-                    </a>
-
-                    <a class="bot-link" href="#" target="_blank">
-                        Paladin Danse
-                    </a>
-
-                    <a class="bot-link" href="#" target="_blank">
-                        Fallout RPG
-                    </a>
-
-                </div>
 
             </div>
 
@@ -861,25 +912,22 @@
 
             <div class="section-content">
 
-                <h3>AI Compatibility</h3>
+                <h3>
+                    AI Compatibility
+                </h3>
 
                 <p>
-                    Placeholder for model compatibility,
-                    token counts and configuration information.
+                    Model compatibility and recommended settings
+                    will go here.
                 </p>
 
-                <h3>Bot Structure</h3>
+                <h3>
+                    Bot Structure
+                </h3>
 
                 <p>
-                    Placeholder for information about the bot
-                    architecture and interchangeable components.
-                </p>
-
-                <h3>Lorebooks</h3>
-
-                <p>
-                    Placeholder for lorebook compatibility and
-                    recommended settings.
+                    Technical details about the package structure
+                    will go here.
                 </p>
 
             </div>
@@ -897,55 +945,9 @@
 
             <div class="section-content">
 
-                <details class="nested">
-
-                    <summary>
-                        What do I receive?
-                    </summary>
-
-                    <div class="section-content">
-
-                        <p>
-                            Placeholder answer.
-                        </p>
-
-                    </div>
-
-                </details>
-
-
-                <details class="nested">
-
-                    <summary>
-                        Can I use the package with JLLM?
-                    </summary>
-
-                    <div class="section-content">
-
-                        <p>
-                            Placeholder answer.
-                        </p>
-
-                    </div>
-
-                </details>
-
-
-                <details class="nested">
-
-                    <summary>
-                        Can I modify the bots?
-                    </summary>
-
-                    <div class="section-content">
-
-                        <p>
-                            Placeholder answer.
-                        </p>
-
-                    </div>
-
-                </details>
+                <p>
+                    Frequently asked questions will go here.
+                </p>
 
             </div>
 
@@ -964,12 +966,13 @@
 
                 <div class="warning">
 
-                    <strong>Please read before purchasing.</strong>
+                    <strong>
+                        Please read before purchasing.
+                    </strong>
 
                     <p>
-                        Placeholder for your actual usage terms,
-                        redistribution restrictions and mature-content
-                        information.
+                        Your usage terms and content information
+                        will go here.
                     </p>
 
                 </div>
@@ -979,7 +982,7 @@
         </details>
 
 
-    </div>
+    </main>
 
 
     <!-- =========================================================
@@ -995,7 +998,6 @@
         <a
             class="purchase-button"
             href="#"
-            target="_blank"
         >
             Get the Package
         </a>
@@ -1009,11 +1011,17 @@
 
     <footer>
 
-        <span class="gold">Aureum Creative</span>
+        <span class="gold">
+            Aureum Creative
+        </span>
+
         ·
+
         GoldAnnie
+
         ·
-        © 2026
+
+        2026
 
     </footer>
 
