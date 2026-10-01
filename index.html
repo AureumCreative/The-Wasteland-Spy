@@ -49,45 +49,47 @@
             scroll-behavior: smooth;
         }
 
-       body {
-    margin: 0;
-    background: #0d1110;
-    color: #e8dfc9;
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1.7;
-    position: relative;
-}
+        body {
+            margin: 0;
+            background: #0d1110;
+            color: #e8dfc9;
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.7;
+            position: relative;
+        }
 
-/* === GoldAnnie background atmosphere === */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+        /* === GoldAnnie background atmosphere === */
 
-    background-image:
-        linear-gradient(
-            to right,
-            rgba(13, 17, 16, 0.55) 0%,
-            rgba(13, 17, 16, 0.68) 5%,
-            rgba(13, 17, 16, 0.80) 10%,
-            rgba(13, 17, 16, 0.88) 15%,
-            rgba(13, 17, 16, 0.92) 22%,
-            rgba(13, 17, 16, 0.92) 78%,
-            rgba(13, 17, 16, 0.88) 85%,
-            rgba(13, 17, 16, 0.80) 90%,
-            rgba(13, 17, 16, 0.68) 95%,
-            rgba(13, 17, 16, 0.55) 100%
-        ),
-        url("background.png");
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+            background-image:
+                linear-gradient(
+                    to right,
+                    rgba(13, 17, 16, 0.55) 0%,
+                    rgba(13, 17, 16, 0.68) 5%,
+                    rgba(13, 17, 16, 0.80) 10%,
+                    rgba(13, 17, 16, 0.88) 15%,
+                    rgba(13, 17, 16, 0.92) 22%,
+                    rgba(13, 17, 16, 0.92) 78%,
+                    rgba(13, 17, 16, 0.88) 85%,
+                    rgba(13, 17, 16, 0.80) 90%,
+                    rgba(13, 17, 16, 0.68) 95%,
+                    rgba(13, 17, 16, 0.55) 100%
+                ),
+                url("background.png");
 
-    pointer-events: none;
-    z-index: -1;
-}
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
 
         /* =========================================================
            PAGE
@@ -546,6 +548,10 @@ body::before {
             background: rgba(0, 0, 0, 0.10);
         }
 
+        .feature-wide {
+            grid-column: 1 / -1;
+        }
+
         .feature-title {
             color: var(--gold-light);
 
@@ -565,9 +571,9 @@ body::before {
 
             color: var(--muted);
 
-            font-size: 0.88rem;
+            font-size: 0.9rem;
 
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
 
@@ -662,6 +668,10 @@ body::before {
                 grid-template-columns: 1fr;
             }
 
+            .feature-wide {
+                grid-column: auto;
+            }
+
             .section-content {
                 padding-left: 12px;
                 padding-right: 12px;
@@ -688,11 +698,11 @@ body::before {
 
     <section class="hero">
 
-       <img
-    class="hero-image"
-    src="deacon-hero.png"
-    alt="Deacon"
->
+        <img
+            class="hero-image"
+            src="deacon-hero.png"
+            alt="Deacon"
+        >
 
         <div class="hero-content">
 
@@ -752,7 +762,7 @@ body::before {
     <main class="sections">
 
 
-               <!-- ABOUT -->
+        <!-- ABOUT -->
 
         <details open>
 
@@ -763,19 +773,98 @@ body::before {
             <div class="section-content">
 
                 <p>
-                    <strong>The Wasteland Spy</strong> is an expanded Deacon
-                    bot package built around a more detailed and consistent
-                    characterization, with additional scenarios, cinematic
-                    introductions, Fallout lore support, and tools for
-                    customizing your own roleplay experience.
+                    If you're a Deacon enjoyer and already like my
+                    <a
+                        href="https://janitorai.com/characters/035f2899-0f0c-40b7-82ee-d76c0f02b81a_character-deacon-fallout-4"
+                        target="_blank"
+                    >
+                        current Deacon bots
+                    </a>,
+                    you're in for a treat!
                 </p>
 
                 <p>
-                    The package contains everything you need to build a
-                    flexible Deacon-centered setup — whether you want a
-                    straightforward character bot, a more specific scenario,
-                    or a customized combination of modules and Lorebooks.
+                    This package expands on my public Deacon bots with
+                    lots of new and improved content that can also be
+                    used with my Fallout Lorebooks.
                 </p>
+
+                <p>
+                    I personally had an absolute blast with these bots.
+                    Between all the different scenarios, I ended up
+                    exchanging over <strong>4,000 messages</strong> with
+                    my private versions before even releasing this package.
+                    Along the way, I kept going back to refine the
+                    characterization whenever I spotted something that
+                    could be made even better.
+                </p>
+
+
+                <div class="divider">
+                    <span>• • •</span>
+                </div>
+
+
+                <h3>
+                    So what has been improved? What is new?
+                </h3>
+
+
+                <div class="feature-grid">
+
+                    <div class="feature">
+
+                        <div class="feature-title">
+                            Authentic Characterization
+                        </div>
+
+                        <p>
+                            An even more authentic portrayal of Deacon,
+                            with a completely rewritten personality
+                            characterization capturing his layered humor,
+                            compulsive lying, conversational style, and
+                            emotional depth.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-title">
+                            3 Core Versions
+                        </div>
+
+                        <p>
+                            Three Core versions with different levels of
+                            detail, allowing you to balance immersion
+                            and token usage.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-title">
+                            New Scenarios
+                        </div>
+
+                        <p>
+                            A wide range of scenarios exploring different
+                            genres, relationships, and roleplay dynamics —
+                            from open-ended sandbox adventures to emotionally
+                            driven and story-rich narratives.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    The Package Features
+                </h3>
 
 
                 <div class="feature-grid">
@@ -787,7 +876,7 @@ body::before {
                         </div>
 
                         <p>
-                            Twelve Deacon bots, all built around the new and
+                            Twelve bots, all built around the new and
                             improved characterization.
                         </p>
 
@@ -801,8 +890,9 @@ body::before {
                         </div>
 
                         <p>
-                            Eighteen immersive, scenario-focused introductions,
-                            including twelve created exclusively for this package.
+                            Eighteen immersive, cinematic introductions,
+                            including twelve created exclusively for
+                            this package.
                         </p>
 
                     </div>
@@ -815,13 +905,19 @@ body::before {
                         </div>
 
                         <p>
-                            Designed to work with my Fallout Lorebooks through
-                            my public
-                            <a href="https://janitorai.com/characters/0ee0141a-4640-4294-be0f-35c073a682dd_character-fallout-rpg-companions" target="_blank">
+                            Designed to work with my Fallout Lorebooks
+                            through my public
+                            <a
+                                href="https://janitorai.com/characters/0ee0141a-4640-4294-be0f-35c073a682dd_character-fallout-rpg-companions"
+                                target="_blank"
+                            >
                                 RPG bot
                             </a>
                             or my
-                            <a href="https://janitorai.com/scripts/f5548d9b-0bd4-4c06-ac75-a77ede1b2cb1" target="_blank">
+                            <a
+                                href="https://janitorai.com/scripts/f5548d9b-0bd4-4c06-ac75-a77ede1b2cb1"
+                                target="_blank"
+                            >
                                 Extended Lorebooks
                             </a>.
                         </p>
@@ -836,8 +932,8 @@ body::before {
                         </div>
 
                         <p>
-                            Step-by-step guides for creating the bots and
-                            using them together with my Lorebooks.
+                            Beginner-friendly guides for creating the bots
+                            and using them together with my Lorebooks.
                         </p>
 
                     </div>
@@ -866,7 +962,8 @@ body::before {
 
                         <p>
                             Interchangeable bot modules for Users who want
-                            additional customization and control over their setup.
+                            additional customization and control over
+                            their setup.
                         </p>
 
                     </div>
