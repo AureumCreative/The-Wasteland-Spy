@@ -1,6 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Wasteland Spy — GoldAnnie</title>
+
+    <style>
+
+        /* =========================================================
+           GOLDANNIE / WASTELAND SPY
+           VISUAL FOUNDATION
+           ========================================================= */
+
+        :root {
+            --black: #0d1110;
+            --dark: #121816;
+            --panel: #171e1b;
+            --panel-light: #1c2521;
+
+            --teal: #25cd9d;
+            --teal-muted: #77ac9e;
+
+            --gold: #deab2c;
+            --gold-light: #e3cd98;
+
+            --cream: #e8dfc9;
+            --muted: #9da59f;
+
+            --red: #c85b52;
+
+            --border: rgba(119, 172, 158, 0.22);
+            --gold-border: rgba(222, 171, 44, 0.35);
+
+            --page-width: 1050px;
+        }
+
+
+        /* =========================================================
+           RESET
+           ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+       body {
+    margin: 0;
+    background: #0d1110;
+    color: #e8dfc9;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+    position: relative;
+}
+
+/* === GoldAnnie background atmosphere === */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(13, 17, 16, 0.55) 0%,
+            rgba(13, 17, 16, 0.68) 5%,
+            rgba(13, 17, 16, 0.80) 10%,
+            rgba(13, 17, 16, 0.88) 15%,
+            rgba(13, 17, 16, 0.92) 22%,
+            rgba(13, 17, 16, 0.92) 78%,
+            rgba(13, 17, 16, 0.88) 85%,
+            rgba(13, 17, 16, 0.80) 90%,
+            rgba(13, 17, 16, 0.68) 95%,
+            rgba(13, 17, 16, 0.55) 100%
+        ),
+        url("background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+        /* =========================================================
+           PAGE
+           ========================================================= */
+
+        .page {
+            width: min(100% - 30px, var(--page-width));
+            margin: auto;
+            padding-bottom: 80px;
+        }
+
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .hero {
+            position: relative;
+
+            min-height: 610px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            overflow: hidden;
+
+            margin-bottom: 45px;
+        }
+
+
+        /* Deacon artwork */
+
+        .hero-image {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center center;
+
+            z-index: 0;
+        }
+
+
+        /* Dark cinematic overlays */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(13, 17, 16, 0.08) 0%,
+                    rgba(13, 17, 16, 0.05) 38%,
+                    rgba(13, 17, 16, 0.70) 72%,
+                    var(--black) 100%
+                );
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(13, 17, 16, 0.30),
+                    transparent 25%,
+                    transparent 75%,
+                    rgba(13, 17, 16, 0.30)
+                );
+        }
+
+
+        /* =========================================================
+           HERO TEXT
+           ========================================================= */
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            padding: 60px 25px 30px;
+
+            text-align: center;
+        }
+
+        .creator-label {
+            margin-bottom: 12px;
+
+            color: var(--teal);
+
+            font-family: Arial, sans-serif;
+            font-size: 0.72rem;
+            font-weight: bold;
+
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            margin: 0;
+
+            color: var(--gold-light);
+
+            font-size: clamp(2.6rem, 7vw, 5rem);
+            font-weight: normal;
+
+            line-height: 1.05;
+
+            text-shadow:
+                0 2px 18px rgba(0, 0, 0, 0.75),
+                0 0 30px rgba(222, 171, 44, 0.10);
+        }
+
+        .hero-subtitle {
+            margin: 15px auto 0;
+
+            max-width: 700px;
+
+            color: #d3c8ad;
+
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+
+            font-style: italic;
+
+            text-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.9);
+        }
+
+
+        /* =========================================================
+           DECORATIVE DIVIDER
+           ========================================================= */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            width: min(100%, 650px);
+
+            margin: 28px auto;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    var(--gold-border)
+                );
+        }
+
+        .divider::after {
+            background:
+                linear-gradient(
+                    to left,
+                    transparent,
+                    var(--gold-border)
+                );
+        }
+
+        .divider span {
+            color: var(--gold);
+
+            font-size: 0.75rem;
+
+            letter-spacing: 0.3em;
+        }
+
+
+        /* =========================================================
+           PURCHASE BUTTON
+           ========================================================= */
+
+        .purchase-area {
+            text-align: center;
+
+            margin: 0 0 50px;
+        }
+
+        .purchase-button {
+            display: inline-block;
+
+            padding: 13px 32px;
+
+            border: 1px solid var(--gold);
+
+            border-radius: 3px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(222, 171, 44, 0.18),
+                    rgba(222, 171, 44, 0.05)
+                );
+
+            color: var(--gold-light);
+
+            font-family: Arial, sans-serif;
+            font-size: 0.76rem;
+            font-weight: bold;
+
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+
+            text-decoration: none;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .purchase-button:hover {
+            background: rgba(222, 171, 44, 0.24);
+
+            border-color: var(--gold-light);
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+           INTRO
+           ========================================================= */
+
+        .intro {
+            max-width: 850px;
+
+            margin: 0 auto 40px;
+
+            padding: 22px 28px;
+
+            border-left: 2px solid var(--teal);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(37, 205, 157, 0.07),
+                    transparent
+                );
+
+            color: var(--muted);
+        }
+
+        .intro strong {
+            color: var(--teal);
+        }
+
+
+        /* =========================================================
+           DROPDOWN CONTAINER
+           ========================================================= */
+
+        .sections {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        /* =========================================================
+           DROPDOWNS
+           ========================================================= */
+
+        details {
+            border-top: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(37, 205, 157, 0.025),
+                    transparent
+                );
+        }
+
+        details:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        details[open] {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(222, 171, 44, 0.025),
+                    transparent
+                );
+        }
+
+
+        /* Dropdown title */
+
+        summary {
+            display: flex;
+
+            align-items: center;
+
+            min-height: 66px;
+
+            padding: 17px 10px;
+
+            cursor: pointer;
+
+            list-style: none;
+
+            color: var(--gold-light);
+
+            font-size: 1.08rem;
+
+            letter-spacing: 0.04em;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+
+            margin-left: auto;
+
+            padding-left: 20px;
+
+            color: var(--teal);
+
+            font-family: Arial, sans-serif;
+
+            font-size: 1.35rem;
+
+            transition:
+                transform 0.2s ease;
+        }
+
+        details[open] > summary::after {
+            content: "−";
+
+            color: var(--gold);
+        }
+
+        summary:hover {
+            color: white;
+        }
+
+
+        /* =========================================================
+           CONTENT
+           ========================================================= */
+
+        .section-content {
+            padding: 5px 20px 30px;
+
+            color: var(--cream);
+        }
+
+        .section-content p {
+            margin: 10px 0;
+        }
+
+        .section-content h3 {
+            margin: 25px 0 8px;
+
+            color: var(--teal);
+
+            font-size: 0.95rem;
+
+            font-weight: normal;
+
+            letter-spacing: 0.05em;
+        }
+
+
+        /* =========================================================
+           NESTED DROPDOWNS
+           ========================================================= */
+
+        .nested {
+            margin: 8px 0;
+
+            border: 1px solid rgba(119, 172, 158, 0.13);
+
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        .nested:last-child {
+            border-bottom: 1px solid rgba(119, 172, 158, 0.13);
+        }
+
+        .nested summary {
+            min-height: 50px;
+
+            padding: 12px 15px;
+
+            color: var(--teal-muted);
+
+            font-size: 0.95rem;
+        }
+
+        .nested .section-content {
+            padding: 3px 18px 20px;
+        }
+
+
+        /* =========================================================
+           FEATURE CARDS
+           ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin: 22px 0;
+        }
+
+        .feature {
+            padding: 18px;
+
+            border: 1px solid rgba(119, 172, 158, 0.15);
+
+            background: rgba(0, 0, 0, 0.10);
+        }
+
+        .feature-title {
+            color: var(--gold-light);
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.7rem;
+
+            font-weight: bold;
+
+            letter-spacing: 0.13em;
+
+            text-transform: uppercase;
+        }
+
+        .feature p {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-size: 0.88rem;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           WARNING
+           ========================================================= */
+
+        .warning {
+            padding: 16px 20px;
+
+            border-left: 2px solid var(--red);
+
+            background: rgba(200, 91, 82, 0.06);
+
+            color: #c9aaa6;
+
+            font-size: 0.9rem;
+        }
+
+        .warning strong {
+            color: var(--red);
+        }
+
+
+        /* =========================================================
+           LINKS
+           ========================================================= */
+
+        a {
+            color: var(--teal);
+
+            transition:
+                color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--gold-light);
+        }
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            margin-top: 65px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.7rem;
+
+            letter-spacing: 0.07em;
+        }
+
+        footer .gold {
+            color: var(--gold);
+        }
+
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+                width: min(100% - 18px, var(--page-width));
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+
+            .hero-image {
+                object-position: center center;
+            }
+
+            .hero-content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            summary {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+    </style>
+</head>
+
+
 <body>
 
 <div class="page">
+
 
     <!-- =========================================================
          HERO
@@ -8,11 +688,11 @@
 
     <section class="hero">
 
-        <img
-            class="hero-image"
-            src="deacon-hero.png"
-            alt="Deacon"
-        >
+       <img
+    class="hero-image"
+    src="deacon-hero.png"
+    alt="Deacon"
+>
 
         <div class="hero-content">
 
@@ -36,9 +716,7 @@
 
                 <a
                     class="purchase-button"
-                    href="https://ko-fi.com/aureumcreative/shop"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
                 >
                     Get the Package
                 </a>
@@ -51,337 +729,162 @@
 
 
     <!-- =========================================================
-         INTRODUCTION
+         INTRO
          ========================================================= -->
 
     <div class="intro">
 
-        <strong>The Wasteland Spy</strong>
+        <strong>Welcome.</strong>
 
         <p>
-            If you're a Deacon enjoyer and already like my current
-            <a
-                href="https://janitorai.com/characters/035f2899-0f0c-40b7-82ee-d76c0f02b81a_character-deacon-fallout-4"
-                target="_blank"
-                rel="noopener noreferrer"
-            >Deacon bots</a>,
-            you're in for a treat!
-        </p>
-
-        <p>
-            This package expands on my public Deacon bots with lots
-            of new and improved content that can also be used with
-            my Fallout Lorebooks.
-        </p>
-
-        <p>
-            I personally had an absolute blast with these bots.
-            Between all the different scenarios, I ended up
-            exchanging <strong>over 4,000 messages</strong> with my
-            private versions before even releasing this package.
-        </p>
-
-        <p>
-            Along the way, I also kept going back to refine the
-            characterization whenever I spotted something that could
-            be made even better.
+            This page contains information, previews and documentation
+            for The Wasteland Spy. The actual package files will be
+            provided separately.
         </p>
 
     </div>
 
 
     <!-- =========================================================
-         MAIN SECTIONS
+         DROPDOWN SECTIONS
          ========================================================= -->
 
     <main class="sections">
 
 
-        <!-- =====================================================
-             WHAT HAS BEEN IMPROVED
-             ===================================================== -->
+               <!-- ABOUT -->
 
         <details open>
 
             <summary>
-                What Has Been Improved? What's New?
+                About the Package
             </summary>
 
             <div class="section-content">
 
                 <p>
-                    <strong>
-                        An even more authentic portrayal of Deacon,
-                        with completely rewritten personality
-                        characterization.
-                    </strong>
-                    Faithfully capturing his layered humor,
-                    compulsive lying, conversational style, and
-                    emotional depth.
+                    <strong>The Wasteland Spy</strong> is an expanded Deacon
+                    bot package built around a more detailed and consistent
+                    characterization, with additional scenarios, cinematic
+                    introductions, Fallout lore support, and tools for
+                    customizing your own roleplay experience.
                 </p>
 
                 <p>
-                    <strong>
-                        Three Core versions
-                    </strong>
-                    with different levels of detail, allowing you
-                    to balance immersion and token usage.
-                </p>
-
-                <p>
-                    <strong>
-                        A wide range of new scenarios
-                    </strong>
-                    exploring different genres, relationships and
-                    roleplay dynamics — from open-ended sandbox
-                    adventures to emotionally driven or story-rich
-                    narratives.
-                </p>
-
-            </div>
-
-        </details>
-
-
-        <!-- =====================================================
-             PACKAGE FEATURES
-             ===================================================== -->
-
-        <details>
-
-            <summary>
-                The Package Features
-            </summary>
-
-            <div class="section-content">
-
-                <p>
-                    <strong>12 bots</strong>, all built on the new,
-                    improved characterization.
-                </p>
-
-                <p>
-                    <strong>18 immersive, cinematic intros</strong>,
-                    12 exclusive to this package.
-                </p>
-
-                <p>
-                    Designed to work with my
-                    <strong>Fallout Lorebooks</strong>, whether
-                    through my public
-                    <a
-                        href="https://janitorai.com/characters/0ee0141a-4640-4294-be0f-35c073a682dd_character-fallout-rpg-companions"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >RPG bot</a>,
-                    or with my
-                    <a
-                        href="https://janitorai.com/scripts/f5548d9b-0bd4-4c06-ac75-a77ede1b2cb1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >Extended Lorebooks</a>.
-                </p>
-
-                <p>
-                    Beginner-friendly <strong>guides</strong> for
-                    creating the bots and using them with my
-                    Lorebooks.
-                </p>
-
-                <p>
-                    <strong>17 profile pictures</strong>, AI-generated
-                    and post-processed by me — entirely optional;
-                    you can use them or any other images you like.
-                </p>
-
-                <p>
-                    Interchangeable <strong>bot modules</strong> for
-                    Users who want additional customization.
-                </p>
-
-                <p>
-                    <strong>Full JLLM compatibility</strong> —
-                    though I generally recommend a quality proxy
-                    for the best roleplay experience.
-                </p>
-
-            </div>
-
-        </details>
-
-
-        <!-- =====================================================
-             WRITING SAMPLES
-             ===================================================== -->
-
-        <details>
-
-            <summary>
-                Want to See the Quality for Yourself?
-            </summary>
-
-            <div class="section-content">
-
-                <p>
-                    Not sure what to expect? Before deciding,
-                    you're welcome to take a look at some of my
-                    public Fallout bots for reference.
-                </p>
-
-                <p>
-                    I deliberately selected intros where the writing
-                    matters the most — scenes built around emotional
-                    depth, believable inner thoughts, tension, and
-                    character-driven storytelling.
-                </p>
-
-                <p>
-                    Of course, this package also contains plenty of
-                    lighter, shorter, more open-ended sandbox intros.
-                    The examples listed here simply showcase the kind
-                    of characterization and narrative quality you can
-                    expect from this package.
-                </p>
-
-                <p>
-                    The following public bots are provided only as
-                    writing samples. When opening them, the
-                    <strong>first message / initial message</strong>
-                    is the part you'll want to read; the personality
-                    and scenario definitions are intentionally written
-                    as technical prompts.
+                    The package contains everything you need to build a
+                    flexible Deacon-centered setup — whether you want a
+                    straightforward character bot, a more specific scenario,
+                    or a customized combination of modules and Lorebooks.
                 </p>
 
 
-                <h3>Writing Samples</h3>
+                <div class="feature-grid">
 
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/76cad825-db3f-404a-a724-00590dfaebc7_character-deacon-fallout-4"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Deacon — Undercover, Posing as Your Lover
-                    </a>
-                    <br>
-                    <small>
-                        Spy thriller · romantic tension · slow burn
-                    </small>
-                </p>
+                    <div class="feature">
 
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/380c76d9-d95b-4d8b-8a66-1a2f46acf918_character-lucy-mac-lean-vault-33"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Lucy — Excited to Marry You // Wedding Night Retreat
-                    </a>
-                    <br>
-                    <small>
-                        Romance · wholesome · slice of life
-                    </small>
-                </p>
+                        <div class="feature-title">
+                            12 Bots
+                        </div>
 
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/c011a8eb-21d7-455d-8662-8df1d55e9655_character-paladin-danse-fallout-4-training-exercise-brotherhood-of-steel"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Danse — A "Hard" Time During Training
-                    </a>
-                    <br>
-                    <small>
-                        Awkward comedy · sexual tension
-                    </small>
-                </p>
+                        <p>
+                            Twelve Deacon bots, all built around the new and
+                            improved characterization.
+                        </p>
 
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/c79e4587-91f3-480e-ab84-8e12d2dda6f1_character-paladin-danse-fallout-4-brotherhood-of-steel"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Danse — Preparing to Interrogate You
-                    </a>
-                    <br>
-                    <small>
-                        Military thriller · psychological drama ·
-                        moral dilemma
-                    </small>
-                </p>
-
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/226173f8-c61a-4da0-9f6e-b9bdad36af29_character-john-hancock"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Hancock — Facing Ghoul Dementia
-                    </a>
-                    <br>
-                    <small>
-                        Psychological drama · angst · tragedy
-                    </small>
-                </p>
-
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/1f780fe9-2daa-4e79-8325-7dbecf48aa18_character-elder-arthur-maxson"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Maxson — Severely Wounded After a Vertibird Crash
-                    </a>
-                    <br>
-                    <small>
-                        Action · survival drama · hurt/comfort
-                    </small>
-                </p>
-
-                <p>
-                    <a
-                        href="https://janitorai.com/characters/d9f6af64-1e72-4232-b216-8086e9a50a51_character-elder-arthur-maxson-fallout-4-brotherhood-of-steel"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Maxson — Reuniting with You, the Spouse He Believed Dead
-                    </a>
-                    <br>
-                    <small>
-                        Military drama · romance · emotional catharsis
-                    </small>
-                </p>
-
-            </div>
-
-        </details>
+                    </div>
 
 
-        <!-- =====================================================
-             MATURE CONTENT
-             ===================================================== -->
+                    <div class="feature">
 
-        <details>
+                        <div class="feature-title">
+                            18 Cinematic Intros
+                        </div>
 
-            <summary>
-                Mature Content Warning
-            </summary>
+                        <p>
+                            Eighteen immersive, scenario-focused introductions,
+                            including twelve created exclusively for this package.
+                        </p>
 
-            <div class="section-content">
+                    </div>
 
-                <div class="warning">
 
-                    <strong>
-                        🔞 Mature Content Warning
-                    </strong>
+                    <div class="feature">
 
-                    <p>
-                        This package contains sexual content,
-                        violence, death, and other mature themes.
-                        It is intended for adults only.
-                    </p>
+                        <div class="feature-title">
+                            Fallout Lorebooks
+                        </div>
+
+                        <p>
+                            Designed to work with my Fallout Lorebooks through
+                            my public
+                            <a href="https://janitorai.com/characters/0ee0141a-4640-4294-be0f-35c073a682dd_character-fallout-rpg-companions" target="_blank">
+                                RPG bot
+                            </a>
+                            or my
+                            <a href="https://janitorai.com/scripts/f5548d9b-0bd4-4c06-ac75-a77ede1b2cb1" target="_blank">
+                                Extended Lorebooks
+                            </a>.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-title">
+                            Beginner Guides
+                        </div>
+
+                        <p>
+                            Step-by-step guides for creating the bots and
+                            using them together with my Lorebooks.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-title">
+                            17 Profile Pictures
+                        </div>
+
+                        <p>
+                            AI-generated and personally post-processed
+                            profile pictures. Completely optional — use
+                            them, replace them, or choose any images you like.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-title">
+                            Mix &amp; Match
+                        </div>
+
+                        <p>
+                            Interchangeable bot modules for Users who want
+                            additional customization and control over their setup.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature feature-wide">
+
+                        <div class="feature-title">
+                            JLLM Compatible
+                        </div>
+
+                        <p>
+                            Fully compatible with JLLM. For the best roleplay
+                            experience, however, I generally recommend using
+                            a quality proxy.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -390,34 +893,101 @@
         </details>
 
 
-        <!-- =====================================================
-             BEFORE YOU BUY
-             ===================================================== -->
+        <!-- PACKAGE CONTENTS -->
 
         <details>
 
             <summary>
-                If You Decide to Buy the Package
+                Package Contents
+            </summary>
+
+            <div class="section-content">
+
+
+                <details class="nested">
+
+                    <summary>
+                        Core
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            The main Deacon configurations.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="nested">
+
+                    <summary>
+                        Story
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Character-focused scenarios.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="nested">
+
+                    <summary>
+                        Multicharacter
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Deacon alongside other Fallout characters.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="nested">
+
+                    <summary>
+                        Mix &amp; Match Modules
+                    </summary>
+
+                    <div class="section-content">
+
+                        <p>
+                            Interchangeable bot components.
+                        </p>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </details>
+
+
+        <!-- SAMPLES -->
+
+        <details>
+
+            <summary>
+                Public Bot Samples
             </summary>
 
             <div class="section-content">
 
                 <p>
-                    <strong>
-                        I poured a tremendous amount of time into
-                        creating, testing, and refining this package.
-                    </strong>
-                </p>
-
-                <p>
-                    Please keep the files — and any bots or
-                    lorebooks created from them —
-                    <strong>for your own private use only.</strong>
-                </p>
-
-                <p>
-                    Every purchase supports future updates and
-                    allows me to create more projects like this. ❤️
+                    Examples of public bots and writing samples.
                 </p>
 
             </div>
@@ -425,22 +995,32 @@
         </details>
 
 
-        <!-- =====================================================
-             BOTS AND INTROS
-             ===================================================== -->
+        <!-- TECHNICAL -->
 
         <details>
 
             <summary>
-                Now, Let's Take a Look at the Bots and Intros!
+                Technical Information
             </summary>
 
             <div class="section-content">
 
+                <h3>
+                    AI Compatibility
+                </h3>
+
                 <p>
-                    Content exclusive to this package and unavailable
-                    in any form on my Janitor page is marked with
-                    <strong>New!</strong>
+                    Model compatibility and recommended settings
+                    will go here.
+                </p>
+
+                <h3>
+                    Bot Structure
+                </h3>
+
+                <p>
+                    Technical details about the package structure
+                    will go here.
                 </p>
 
             </div>
@@ -448,131 +1028,18 @@
         </details>
 
 
-        <!-- =====================================================
-             CORE
-             ===================================================== -->
+        <!-- FAQ -->
 
         <details>
 
             <summary>
-                Core
+                FAQ
             </summary>
 
             <div class="section-content">
 
-                <h3>
-                    Full roleplay flexibility
-                </h3>
-
                 <p>
-                    No pre-written ties to the user and no
-                    predetermined story elements (only Deacon's
-                    canonical backstory).
-                </p>
-
-
-                <h3>Bots</h3>
-
-                <p>
-                    <strong>1. Core / Compact</strong>
-                    — Bot Personality under 900 tokens
-                </p>
-
-                <p>
-                    Organized into:
-                    <em>
-                        Backstory / Physical Traits / Skills /
-                        Personality / Enjoys / Dislikes /
-                        Romantic &amp; Sexual Behavior
-                    </em>
-                </p>
-
-
-                <p>
-                    <strong>2. Core / Standard</strong>
-                    — Bot Personality under 1,300 tokens
-                </p>
-
-                <p>
-                    My recommended version, best optimized.
-                    Organized into:
-                    <em>
-                        Backstory / Physical Traits / Skills /
-                        Personality / Enjoys / Dislikes /
-                        Romantic &amp; Sexual Behavior
-                    </em>
-                </p>
-
-
-                <p>
-                    <strong>3. Core / Extended</strong>
-                    — Bot Personality under 2,300 tokens
-                </p>
-
-                <p>
-                    Highly detailed, organized into:
-                    <em>
-                        Backstory / Physical Traits / Personality /
-                        Speech / Mannerisms / Skills / Combat Behavior /
-                        Free Time Habits / Enjoys / Dislikes /
-                        Romantic Behavior / Sexual Behavior
-                    </em>
-                </p>
-
-                <p>
-                    <strong>
-                        Each version is fully playable on its own
-                    </strong>
-                    — the choice simply lets you decide how much of
-                    your context window you want to dedicate to
-                    Deacon's characterization.
-                </p>
-
-                <p>
-                    In addition to Personality, bots also come with
-                    their own recommended Example Dialogs and,
-                    where applicable, Scenario definition.
-                </p>
-
-
-                <h3>
-                    Suggested Intros
-                </h3>
-
-                <p>
-                    <strong>Create Your Own</strong>
-                </p>
-
-                <p>
-                    <strong>Wasteland Encounter</strong>
-                    — simple, open-ended scenario
-                </p>
-
-                <p>
-                    <strong>Diamond City</strong>
-                    — simple, open-ended scenario
-                </p>
-
-                <p>
-                    <strong>Railroad HQ</strong>
-                    — simple, open-ended scenario
-                </p>
-
-                <p>
-                    <strong>
-                        Buried, Bleeding, Trapped after a courser attack
-                    </strong>
-                    — ideal for angst / survival / fluff /
-                    slowburn / enemies-to-lovers / plot-rich roleplays
-                </p>
-
-                <p>
-                    <strong>
-                        Traveling with User, stripping off
-                        radioactive clothes
-                    </strong>
-                    — ideal for comedy / fluff / smut /
-                    sexual tension / slowburn roleplays
+                    Frequently asked questions will go here.
                 </p>
 
             </div>
@@ -580,348 +1047,12 @@
         </details>
 
 
-        <!-- =====================================================
-             STORY
-             ===================================================== -->
+        <!-- TERMS -->
 
         <details>
 
             <summary>
-                Story
-            </summary>
-
-            <div class="section-content">
-
-                <h3>
-                    Character-focused scenarios with built-in
-                    narrative hooks
-                </h3>
-
-                <p>
-                    By default, Story bots use the
-                    <strong>Core / Standard</strong> version of
-                    Deacon as their foundation.
-                </p>
-
-                <p>
-                    Definition also contains pre-written story
-                    elements and, in some cases, pre-established
-                    ties to the user.
-                </p>
-
-                <p>
-                    The Scenario definitions are usually essential
-                    to the story. Recommended Example Dialogs are
-                    included for each bot.
-                </p>
-
-
-                <h3>
-                    Bots and their Suggested Intros
-                </h3>
-
-                <p>
-                    Create-your-own intros are available for all bots.
-                </p>
-
-
-                <p>
-                    <strong>
-                        4. Posing as a couple at the Third Rail,
-                        undercover mission
-                    </strong>
-                </p>
-
-                <p>
-                    Deacon enjoys the "couples" act a bit too much —
-                    ideal for fluff / sexual tension / slowburn
-                    romance / action / plot-rich roleplays.
-                </p>
-
-                <p>
-                    Retreating to Hotel Rexford, Deacon is getting
-                    nervous — ideal for fluff / smut / sexual tension /
-                    slowburn romance.
-                </p>
-
-
-                <p>
-                    <strong>
-                        5. Established romantic relationship with User
-                    </strong>
-                </p>
-
-                <p>
-                    Diamond City rendezvous —
-                    simple, open-ended scenario.
-                </p>
-
-                <p>
-                    Waking up beside User —
-                    ideal for fluff / smut.
-                </p>
-
-
-                <p>
-                    <strong>
-                        6. The Institute recreated Deacon's late
-                        synth wife without her memories
-                    </strong>
-                    — user can be either the synth or anyone else.
-                </p>
-
-                <p>
-                    Meeting B7-41, an escaped synth —
-                    ideal for angst / fluff / slowburn.
-                </p>
-
-                <p>
-                    Shaken after meeting B7-41, an escaped synth —
-                    ideal for angst / fluff / slowburn.
-                </p>
-
-                <p>
-                    Encountering "his wife" as a hostile Institute
-                    operative — ideal for angst / fluff /
-                    enemies to lovers / action / plot-rich roleplays.
-                </p>
-
-
-                <p>
-                    <strong>
-                        7. Institute recreated his late wife +
-                        Established romantic relationship with User
-                    </strong>
-                </p>
-
-                <p>
-                    Shaken after meeting B7-41, an escaped synth —
-                    ideal for angst / relationship drama.
-                </p>
-
-            </div>
-
-        </details>
-
-
-        <!-- =====================================================
-             MULTICHARACTER
-             ===================================================== -->
-
-        <details>
-
-            <summary>
-                Multicharacter
-            </summary>
-
-            <div class="section-content">
-
-                <h3>
-                    Roleplay featuring Deacon alongside another
-                    companion
-                </h3>
-
-                <p>
-                    By default, most Multicharacter bots use the
-                    <strong>Core / Standard</strong> version of
-                    Deacon as their foundation.
-                </p>
-
-                <p>
-                    The Vault 52 and Brotherhood Infiltration bots
-                    use more compact versions of Deacon to save
-                    tokens while adding pre-written story elements
-                    and pre-established ties to the user.
-                    Scenario definition with these two bots is an
-                    essential addition.
-                </p>
-
-                <p>
-                    Recommended Example Dialogs are included for
-                    each bot as well.
-                </p>
-
-
-                <h3>
-                    Bots and their Suggested Intros
-                </h3>
-
-                <p>
-                    Create-your-own intros are available for all bots.
-                </p>
-
-
-                <p>
-                    <strong>
-                        8. Deacon &amp; Hancock — Core
-                    </strong>
-                </p>
-
-                <p>
-                    <strong>Sanctuary Shenanigans</strong> —
-                    open-ended scenario; ideal for comedy /
-                    fluff / slowburn.
-                </p>
-
-
-                <p>
-                    <strong>
-                        9. Deacon &amp; Hancock — Exploring Vault 52
-                    </strong>
-                </p>
-
-                <p>
-                    <strong>Vault 52</strong> —
-                    ideal for comedy / mystery / case-solving / action.
-                </p>
-
-
-                <p>
-                    <strong>
-                        10. Deacon &amp; MacCready — Core
-                    </strong>
-                </p>
-
-                <p>
-                    <strong>Create your own</strong>
-                </p>
-
-
-                <p>
-                    <strong>
-                        11. Deacon &amp; Paladin Danse — Core
-                    </strong>
-                </p>
-
-                <p>
-                    <strong>Tension in Sanctuary</strong> —
-                    open-ended scenario; ideal for comedy /
-                    rivalry conflict / fluff / slowburn /
-                    enemies-to-lovers.
-                </p>
-
-                <p>
-                    <strong>
-                        Spooky Mission alongside User
-                    </strong>
-                    — ideal for comedy / rivalry conflict /
-                    mystery / horror / action / plot-rich roleplays.
-                </p>
-
-
-                <p>
-                    <strong>
-                        12. Deacon &amp; Paladin Danse —
-                        Infiltrating the Brotherhood,
-                        undercover as soldiers
-                    </strong>
-                </p>
-
-                <p>
-                    User and Deacon meet Paladin Danse,
-                    their new commanding officer —
-                    ideal for loyalty conflict / high-stakes
-                    conflict / slowburn / enemies-to-lovers /
-                    action / plot-heavy roleplays.
-                </p>
-
-            </div>
-
-        </details>
-
-
-        <!-- =====================================================
-             MIX & MATCH
-             ===================================================== -->
-
-        <details>
-
-            <summary>
-                Mix &amp; Match Bot Modules
-            </summary>
-
-            <div class="section-content">
-
-                <h3>
-                    Customization Options for Advanced Users
-                </h3>
-
-                <p>
-                    Alongside the ready-to-use bots, the package also
-                    includes interchangeable bot modules.
-                </p>
-
-                <p>
-                    You can easily customize any included bot to your
-                    liking: add, swap or remove different personality
-                    sections, scenario definitions and example
-                    dialogues.
-                </p>
-
-                <p>
-                    For example, you might use the
-                    <strong>Standard</strong> bot but replace its
-                    scenario with the <strong>Extended</strong>
-                    version, or add the
-                    <strong>Combat Behavior</strong> module from the
-                    Extended personality to one of the Story bots.
-                </p>
-
-                <p>
-                    Mixing modules may create a few duplicated
-                    prompts, but these are easy to spot and remove.
-                </p>
-
-                <p>
-                    To make customization easier, I separated the
-                    following modules into their own folder:
-                </p>
-
-                <p>
-                    • <strong>Personality modules</strong> from all
-                    three Core versions
-                    <br>
-                    <small>
-                        Individual sections from the Extended
-                        version are included separately.
-                    </small>
-                </p>
-
-                <p>
-                    • <strong>Scenario definitions</strong>
-                </p>
-
-                <p>
-                    &nbsp;&nbsp;◦ <strong>Setting only</strong>
-                    (50 / 200 tokens) — designed for use alongside
-                    lorebooks or users who prefer minimal scenario
-                    prompts.
-                </p>
-
-                <p>
-                    &nbsp;&nbsp;◦ <strong>Standard / Extended</strong>
-                    (400 / 800 tokens) — standalone scenario prompts
-                    containing setting, worldbuilding and faction lore.
-                </p>
-
-                <p>
-                    • <strong>Example dialogs</strong>
-                    (500 / 700 / 950 token Core versions)
-                </p>
-
-            </div>
-
-        </details>
-
-
-        <!-- =====================================================
-             TERMS OF USE
-             ===================================================== -->
-
-        <details>
-
-            <summary>
-                Terms of Use
+                Usage Terms
             </summary>
 
             <div class="section-content">
@@ -933,22 +1064,8 @@
                     </strong>
 
                     <p>
-                        The files included in this package are for
-                        your own private use only.
-                    </p>
-
-                    <p>
-                        You may create bots and lorebooks from the
-                        provided materials for your personal use,
-                        but the package files themselves — and
-                        derivative copies intended for redistribution —
-                        should not be shared, reposted or resold.
-                    </p>
-
-                    <p>
-                        These terms exist to protect the time and work
-                        that went into creating and maintaining the
-                        package.
+                        Your usage terms and content information
+                        will go here.
                     </p>
 
                 </div>
@@ -973,9 +1090,7 @@
 
         <a
             class="purchase-button"
-            href="https://ko-fi.com/aureumcreative/shop"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
         >
             Get the Package
         </a>
