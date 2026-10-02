@@ -288,6 +288,54 @@
     transform: translateY(-50%) translateX(0);
 }
 
+        @media (max-width: 700px) {
+
+    .floating-nav {
+        top: 10px;
+        left: 10px;
+
+        flex-direction: row;
+
+        border-radius: 9px;
+    }
+
+    .floating-nav a {
+        min-width: 0;
+        padding: 9px 11px;
+
+        border-bottom: none;
+        border-right: 1px solid rgba(119, 172, 158, 0.18);
+    }
+
+    .floating-nav a:last-child {
+        border-right: none;
+    }
+
+    .floating-label {
+        display: none;
+    }
+
+    .floating-icon {
+        width: auto;
+        font-size: 1.05rem;
+    }
+
+    .floating-nav a:hover {
+        padding-left: 11px;
+    }
+
+    .floating-tooltip {
+        left: 50%;
+        top: calc(100% + 8px);
+
+        transform: translateX(-50%) translateY(-4px);
+    }
+
+    .floating-nav a:hover .floating-tooltip {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
         /* =========================================================
            HERO TEXT
            ========================================================= */
