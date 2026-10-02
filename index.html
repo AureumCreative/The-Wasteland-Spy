@@ -178,15 +178,14 @@
                 );
         }
 
-        /* =========================================================
+      /* =========================================================
    FLOATING NAVIGATION
    ========================================================= */
 
 .floating-nav {
     position: fixed;
-    top: 50%;
-    right: 18px;
-    transform: translateY(-50%);
+    top: 18px;
+    left: 18px;
     z-index: 1000;
 
     display: flex;
@@ -194,7 +193,7 @@
 
     border: 1px solid var(--gold-border);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
 
     background: rgba(18, 24, 22, 0.94);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -202,6 +201,8 @@
 }
 
 .floating-nav a {
+    position: relative;
+
     display: flex;
     align-items: center;
     gap: 9px;
@@ -246,43 +247,45 @@
     color: var(--gold);
 }
 
-        @media (max-width: 700px) {
 
-    .floating-nav {
-        top: auto;
-        right: 10px;
-        bottom: 12px;
-        transform: none;
+/* === CUSTOM TOOLTIP === */
 
-        flex-direction: row;
+.floating-tooltip {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
 
-        border-radius: 9px;
-    }
+    transform: translateY(-50%) translateX(-4px);
 
-    .floating-nav a {
-        min-width: 0;
-        padding: 9px 11px;
+    white-space: nowrap;
 
-        border-bottom: none;
-        border-right: 1px solid rgba(119, 172, 158, 0.18);
-    }
+    padding: 6px 9px;
 
-    .floating-nav a:last-child {
-        border-right: none;
-    }
+    border: 1px solid var(--gold-border);
+    border-radius: 6px;
 
-    .floating-label {
-        display: none;
-    }
+    background: rgba(18, 24, 22, 0.97);
+    color: var(--cream);
 
-    .floating-icon {
-        width: auto;
-        font-size: 1.05rem;
-    }
+    font-family: Georgia, serif;
+    font-size: 0.75rem;
+    font-weight: normal;
 
-    .floating-nav a:hover {
-        padding-left: 11px;
-    }
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.08s ease,
+        transform 0.08s ease;
+}
+
+.floating-nav a:hover .floating-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
 }
 
         /* =========================================================
@@ -1062,7 +1065,7 @@
 
     </section>
 
-    <!-- =========================================================
+   <!-- =========================================================
      FLOATING NAVIGATION
      ========================================================= -->
 
@@ -1072,34 +1075,33 @@
         href="https://janitorai.com/characters/035f2899-0f0c-40b7-82ee-d76c0f02b81a_character-deacon-fallout-4"
         target="_blank"
         rel="noopener noreferrer"
-        title="Back to Deacon"
     >
         <span class="floating-icon">↩</span>
         <span class="floating-label">Deacon</span>
+        <span class="floating-tooltip">Back to Deacon</span>
     </a>
 
     <a
         href="https://janitorai.com/profiles/be008f16-e767-433a-864f-81724d5cd3f6_profile-of-gold-annie?dicf=1"
         target="_blank"
         rel="noopener noreferrer"
-        title="GoldAnnie on JanitorAI"
     >
         <span class="floating-icon">✦</span>
         <span class="floating-label">GoldAnnie</span>
+        <span class="floating-tooltip">GoldAnnie on JanitorAI</span>
     </a>
 
     <a
         href="https://ko-fi.com/aureumcreative"
         target="_blank"
         rel="noopener noreferrer"
-        title="Visit my Ko-fi"
     >
         <span class="floating-icon">♡</span>
         <span class="floating-label">Ko-fi</span>
+        <span class="floating-tooltip">Visit my Ko-fi</span>
     </a>
 
 </nav>
-
 
 <!-- =========================================================
      INTRO
