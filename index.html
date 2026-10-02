@@ -178,6 +178,112 @@
                 );
         }
 
+        /* =========================================================
+   FLOATING NAVIGATION
+   ========================================================= */
+
+.floating-nav {
+    position: fixed;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--gold-border);
+    border-radius: 10px;
+    overflow: hidden;
+
+    background: rgba(18, 24, 22, 0.94);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+}
+
+.floating-nav a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-width: 125px;
+    padding: 10px 13px;
+
+    color: var(--gold-light);
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    border-bottom: 1px solid rgba(119, 172, 158, 0.18);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        padding-left 0.2s ease;
+}
+
+.floating-nav a:last-child {
+    border-bottom: none;
+}
+
+.floating-icon {
+    width: 17px;
+
+    color: var(--teal);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.floating-nav a:hover {
+    background: rgba(37, 205, 157, 0.10);
+    color: var(--cream);
+    padding-left: 16px;
+}
+
+.floating-nav a:hover .floating-icon {
+    color: var(--gold);
+}
+
+        @media (max-width: 700px) {
+
+    .floating-nav {
+        top: auto;
+        right: 10px;
+        bottom: 12px;
+        transform: none;
+
+        flex-direction: row;
+
+        border-radius: 9px;
+    }
+
+    .floating-nav a {
+        min-width: 0;
+        padding: 9px 11px;
+
+        border-bottom: none;
+        border-right: 1px solid rgba(119, 172, 158, 0.18);
+    }
+
+    .floating-nav a:last-child {
+        border-right: none;
+    }
+
+    .floating-label {
+        display: none;
+    }
+
+    .floating-icon {
+        width: auto;
+        font-size: 1.05rem;
+    }
+
+    .floating-nav a:hover {
+        padding-left: 11px;
+    }
+}
 
         /* =========================================================
            HERO TEXT
