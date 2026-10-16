@@ -371,18 +371,46 @@
             text-align: center;
         }
 
-        .creator-label {
-            margin-bottom: 12px;
+       
+/* =========================================================
+   CREATOR SIGNATURE
+   ========================================================= */
 
-            color: var(--teal);
+.creator-signature {
+    position: absolute;
 
-            font-family: Arial, sans-serif;
-            font-size: 0.72rem;
-            font-weight: bold;
+    right: 32px;
+    bottom: 24px;
 
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-        }
+    z-index: 3;
+
+    color: var(--gold-light);
+
+    font-family: Georgia, serif;
+    font-size: 0.9rem;
+    font-style: italic;
+
+    letter-spacing: 0.04em;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.9),
+        0 0 16px rgba(0, 0, 0, 0.5);
+
+    opacity: 0.85;
+
+    pointer-events: none;
+}
+
+/* Mobile adjustment */
+
+@media (max-width: 600px) {
+    .creator-signature {
+        right: 18px;
+        bottom: 16px;
+
+        font-size: 0.78rem;
+    }
+}
 
         .hero-title {
             margin: 0;
@@ -1101,10 +1129,6 @@
 
         <div class="hero-content">
 
-            <div class="creator-label">
-                A GoldAnnie Creation
-            </div>
-
             <h1 class="hero-title">
                 The Wasteland Spy
             </h1>
@@ -1160,6 +1184,12 @@
             </div>
 
         </div>
+
+        
+<div class="creator-signature">
+    GoldAnnie
+</div>
+
 
     </section>
 
